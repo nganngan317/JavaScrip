@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>04-Array Cardio Practice</title>
+</head>
+<body>
+	<h1>04-Array Cardio Practice</h1>
+	<script type="text/javascript">
+		// <!--data work with -->
+	 const members=[
+	 	{first: 'Nguyen', last:"Anh", year: 1987, passed: 1955},
+	 	{first: 'Yen', last:"The", year: 1643, passed: 1727 },
+	 	{first: 'Nguyen', last:"Hue", year: 1564, passed: 1642 },
+	 	{first: 'Xuan', last:"Dieu", year: 1571, passed: 1630 }];
+	 
+
+	 const people=['Pham, Huong', 'Xuan, Truong', 'Anh, Tuan', 'Tai, Ngan','Chi, Bao'];
+
+	//1.Filter the list who were born in the 1500's
+		const fifteen= members.filter(mem=>(mem.year>=1500 && mem.year<1600));
+		console.table(fifteen);
+
+	//2. Give array first and last name.Map() return new array
+		const fullname= members.map(full=>`${full.first} ${full.last}`);
+		console.table(fullname);
+		
+	//3.Sort the members by birthday, oldest to youngest
+		//cach 1:
+		const birthday= members.sort(function(a,b){
+			return a.year>b.year;
+		});
+		//cach 2:
+		// const birthday= members.sort((a,b)=> a.year> b.year?1:-1);
+		console.table(birthday);
+
+	//4.How many years did all members live. Reduce() sort like map and do sth with every sigle one.
+		const live= members.reduce(function(total, lived){
+			return total + (lived.passed- lived.year);
+		},0);// neu khong de so 0 thi se ra [object][object], do o dong dau tien chay ta k co total= undefined. them 0 vao se cho phep cong  
+		console.log(live);
+
+	//5. Sort members list odest
+		const oldest= members.sort(function(a,b){
+			const firstman= a.passed- a.year;
+			const lastman= b.passed-b.year;
+			return firstman>lastman?1:-1;
+		});
+		console.table(oldest);
+
+
+	//6.  6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+	// https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+		// const category = document.querySelector('.mw-category');
+  //   	const links = Array.from(category.querySelectorAll('a'));
+  //   	const de = links
+  //               .map(link => link.textContent)
+  //               .filter(streetName => streetName.includes('de'));
+	//7. sort exercise. sort the people alphabetically by last name
+
+		const alpha = people.sort(function(last,next){
+			const [alast,afirst]= last.split(', ');
+			const [blast,bfirst]= next.split(', ');
+			return alast>blast;
+		})
+	//8. reduce exercise. sum up the instances of each of these
+	const data = ['xe', 'xe', 'vit', 'vit', 'tao', 'nho', 'xe', 'nho', 'tao', 'vit', 'xe', 'nho', 'xe', 'vit', 'ga'];
+	const sumup = data.reduce(function(obj, item) {
+		//kt tu kho co ton tai k
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {});// set cai key =0 xe=0;vit=0;
+    console.log(sumup);
+	</script>
+
+
+</body>
+</html>
