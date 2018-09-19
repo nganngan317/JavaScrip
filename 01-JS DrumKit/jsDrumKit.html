@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Drum Kit</title>
+	<!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+	<div class="keypress">
+		<div data-key="49" class="key">
+			<kbd>1</kbd>
+			<span class="sound">Clap</span>
+		</div>
+		<div data-key="50" class="key">
+			<kbd>2</kbd>
+			<span class="sound">Hihat</span>
+		</div>
+		<div data-key="51" class="key">
+			<kbd>3</kbd>
+			<span class="sound">Kick</span>
+		</div>
+		<div data-key="52" class="key">
+			<kbd>4</kbd>
+			<span class="sound">Boom</span>
+		</div>
+		
+	</div>
+	<audio data-key="49" src="sounds/clap.wav"></audio>
+	<audio data-key="50" src="sounds/hihat.wav"></audio>
+	<audio data-key="51" src="sounds/kick.wav"></audio>
+	<audio data-key="52" src="sounds/boom.wav"></audio>
+
+<style type="text/css">
+	body,html{
+		padding: 0;
+		margin: 0;
+		background-color:yellow;
+		font-size: 20px;
+		overflow-x: hidden;  
+	}
+	.keypress{
+		display: flex;
+		flex:1;
+		min-height: 600px;
+		align-items: center;
+		justify-content: center;
+	}
+	.key{
+		
+  		border: .2rem solid black;
+  		border-radius: .5rem;
+  		margin: 1rem;
+ 		font-size: 1.3rem;
+ 		padding: 1rem .5rem;
+  		transition: all .07s ease;
+ 		width: 3.5rem;
+ 		text-align: center;
+  		color: black;
+  		background: white;
+
+	}
+	.kbd{
+		display: block;
+		
+	}
+	.playing{
+		transform: scale(1.1);
+		border-color: red;
+		box-shadow: 0 0 10px red;
+	}
+
+	.sound {
+  		font-size: 1.2rem;
+  		text-transform: uppercase;
+  		letter-spacing: .1rem  
+  		color: orange;;
+
+}
+</style>
+
+<script type="text/javascript">
+	
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  }
+  const keypress = Array.from(document.querySelectorAll('.key'));
+  keypress.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+
+</script>
+
+</body>
+
+
+</html>
