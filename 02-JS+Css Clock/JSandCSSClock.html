@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS and CSS Clock</title>
+</head>
+<body>
+	<div class="clock">
+		<div class="num num1"><div>1</div></div>
+  		<div class="num num2"><div>2</div></div>
+  		<div class="num num3"><div>3</div></div>
+  		<div class="num num4"><div>4</div></div>
+  		<div class="num num5"><div>5</div></div>
+  		<div class="num num6"><div>6</div></div>
+  		<div class="num num7"><div>7</div></div>
+  		<div class="num num8"><div>8</div></div>
+  		<div class="num num9"><div>9</div></div>
+  		<div class="num num10"><div>10</div></div>
+  		<div class="num num11"><div>11</div></div>
+  		<div class="num num12"><div>12</div></div>
+		<div class="faceclock">
+			<div class ="Hours"></div>
+			<div class="Minute"></div>
+			<div class="Second"></div>
+		</div>
+	</div>
+
+	<style type="text/css">
+		body,html{
+			background-color:#e6f2ff;
+			margin: 0;
+			display: flex;
+			flex: 1;
+			min-height: 500px;
+			align-items: center;
+			font-size: 20px;
+			
+		}
+		.num{
+			height: 100%;
+			position: absolute;
+			left: calc(50%-0.5em);
+			
+
+		}
+		.num div {
+ 			width: 25em;
+  			line-height: 1em;
+  			color: black;
+  			text-align: center;	
+  			position: relative;
+  			vertical-align: middle;
+  			align-items: center;
+		}
+		.num1 {
+  			transform: rotate(30deg);
+		}
+
+		.num1 div{
+  			transform: rotate(-30deg);
+		}
+
+		.num2 {
+			  transform: rotate(60deg);
+		}
+
+		.num2 div{
+ 			 transform: rotate(-60deg);
+		}
+
+		.num3 {
+ 			 transform: rotate(90deg);
+		}
+
+		.num3 div{
+ 			 transform: rotate(-90deg);
+		}
+
+		.num4 {
+ 			 transform: rotate(120deg);
+		}
+
+		.num4 div{
+			  transform: rotate(-120deg);
+		}
+	
+		.num5 {
+ 			 transform: rotate(150deg);
+		}
+
+		.num5 div{
+			  transform: rotate(-150deg);
+		}
+
+		.num6 {
+ 			 transform: rotate(180deg);
+		}
+
+		.num6 div{
+ 			 transform: rotate(-180deg);
+		}
+
+		.num7 {
+ 			 transform: rotate(210deg);
+		}
+
+		.num7 div{
+  			transform: rotate(-210deg);
+		}
+
+		.num8 {
+ 			 transform: rotate(240deg);
+		}
+
+		.num8 div{
+ 			 transform: rotate(-240deg);
+		}
+
+		.num9 {
+  			transform: rotate(270deg);
+		}
+
+		.num9 div{
+		  transform: rotate(-270deg);
+		}
+
+		.num10 {
+		  transform: rotate(300deg);
+		}
+
+		.num10 div{
+		  transform: rotate(-300deg);
+		}
+
+		.num11 {
+			  transform: rotate(330deg);
+		}
+
+		.num11 div{
+		  transform: rotate(-330deg);
+		}
+
+		.num12 {
+			  transform: rotate(0deg);
+		}
+
+		.num12 div{
+ 		 transform: rotate(-0deg);
+		}
+		.clock{
+
+			width: 25rem;
+			height: 25rem;
+			border:10px solid #002633;
+			border-radius: 50%;
+			margin:50px auto;
+			position: relative;
+			
+		}
+		.Hours{
+			width: 35%;
+			height: 5px;
+			left: 15%;
+			background-color: red;
+			position: absolute;
+			top: 50%;
+			position: absolute;
+			left: calc(50%+-2px);
+			transform-origin: 100%;
+			transform: rotate(90deg);
+			transition: all 0.05s;
+			transition-timing-function: cubic-bezier(0.1,2.7,0.58,1);
+		}
+
+		.Second{
+			width: 50%;
+			height: 2px;
+			background-color: black;
+			top: 50%;
+			position: absolute;
+			transform-origin: 100%;
+			transition: all 0.05s;
+			transition-timing-function: cubic-bezier(0.1,2.7,0.58,1);
+		}
+		.Minute{
+			
+			width: 45%;
+			height: 3.5px;
+			left:5%;
+			background: blue;
+			position: absolute;
+			top:50%;
+			transform-origin: 100%;
+			transform: rotate(90deg);
+			transition: all 0.05s;
+			transition-timing-function: cubic-bezier(0.1,2.7,0.58,1);
+		}
+		.faceclock{
+			position: relative;
+			width: 100%;
+			height: 100%;
+			transform: translate(-3px);
+		}
+/*		.stick{
+			width: 50%;
+			height: 6px;
+			background: black;
+			position: absolute;
+			top:50%;
+			transform-origin: 100%;
+			transform: rotate(90deg);
+			transition: all 0.05s;
+			transition-timing-function: cubic-bezier(0.1,2.7,0.58,1);
+
+		}*/
+
+	</style>
+
+	<script type="text/javascript">
+
+		function setTime(){
+			const now= new Date();
+			const secondStick= document.querySelector('.Second');
+			const minStick= document.querySelector('.Minute');
+			const hourStick= document.querySelector('.Hours');
+
+			const second= now.getSeconds();
+			const secondDeg= ((second/60)*360)+90;
+			secondStick.style.transform= `rotate(${secondDeg}deg)`;
+
+			const min = now.getMinutes();
+			const minDeg= ((min/60)*360)+((second/60)*6)+90;
+			minStick.style.transform= `rotate(${minDeg}deg)`;
+
+			const hours = now.getHours();
+			const hoursDeg= ((hours/12)*360)+((min/60)*30)+90;
+			hourStick.style.transform= `rotate(${hoursDeg}deg)`;
+		}
+		setInterval(setTime,1000);
+		setTime();
+	</script>
+</body>
+</html>
