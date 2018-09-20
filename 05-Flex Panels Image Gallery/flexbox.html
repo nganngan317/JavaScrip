@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta  charset="UTF-8">
+	<title>05 - Flex Panels Image Gallery </title>
+	<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<style type="text/css">
+	html{
+		box-sizing: border-box;
+		font-family: 'helvetica neue';
+		font-size: 20px;
+		font-weight: 200;
+	}
+	body{
+		margin:0;
+	}
+	*,*:before,*:after{
+		box-sizing: inherit;
+	}
+		.panels{
+		
+			min-height: 100vh;
+			overflow: hidden;
+			display: flex;
+			
+		}
+		.panel{
+			background: pink;
+			 /*box-shadow:inset 0 0 0 5px rgba(255,255,255,0.1);*/
+			color: white;
+			text-align: center;
+			align-items: center;
+			transition: font-size 0.7s cubic-bezier(0.61,-0.19,0.7,-0.11),	
+			flex 0.7s cubic-bezier(.61,-0.19,0.7,-0.11),
+			 background 0.2s;
+			font-size: 20px;
+			background-size: cover;
+			background-position: center;
+			border:2px solid black; 
+			flex: 1;
+			justify-content: center;
+			display: flex;
+			flex-direction: column;
+				}
+
+		.pan1{background-image:url(a.jpg); }
+		.pan2{background-image: url(b.jpg);}
+		.pan3{background-image: url(c.jpg);}
+		.pan4{background-image: url(d.jpg);}
+		.pan5{background-image: url(e.jpg);}
+
+		/*flex item*/
+		.panel>*{
+			margin:0;
+			width: 100%;
+			transition: transform 0.5s;
+			/*border:1px solid red;*/
+			flex:1 0 auto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.panel> *:first-child{ transform: translateY(-100%); }
+		.panel.open-active >*:first-child{transform: translateY(0);}
+		.panel> *:last-child{ transform: translateY(100%); }
+		.panel.open-active >*:last-child{transform: translateY(0);}
+
+		
+		.panel p{
+			text-transform: uppercase;
+			font-family: 'Amatic SC', cursive;
+			font-size: 2em;
+		}
+		.panel p:nth-child(2){
+			font-size: 4em;
+
+		}
+		.panel.open{
+			flex:5;
+			font-size: 35px
+		}
+
+
+
+	</style>
+	<div class="panels">
+		<div class="panel pan1">
+			<p>Hey</p>
+			<p>Let's</p>
+			<P>Dance</P>
+		</div>
+		<div class="panel pan2">
+			<p>Give</p>
+			<p>Take</p>
+			<p>Receive</p>
+		</div>
+		<div class="panel pan3">
+			<p>Hey</p>
+			<p>It</p>
+			<P>Dance</P>
+		</div>
+		<div class="panel pan4">
+			<p>Give</p>
+			<p>All</p>
+			<p>Recthongeive</p>
+		</div>
+		<div class="panel pan5">
+			<p>Take</p>
+			<p>The</p>
+			<p>Best</p>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		const panels = document.querySelectorAll('.panel');
+		function open(){
+			console.log('hello');
+			this.classList.toggle('open');
+		}
+		function active(e){
+			console.log(e.propertyName);
+			if(e.propertyName.includes('flex')){
+				this.classList.toggle('open-active');
+			}
+			
+		}
+		panels.forEach(panel=> panel.addEventListener('click',open));
+		panels.forEach(panel=> panel.addEventListener('transitionend',active));
+
+	</script>
+
+</body>
+</html>
