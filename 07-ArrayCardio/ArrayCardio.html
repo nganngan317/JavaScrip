@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>07- Array Cardio</title>
+</head>
+<body>
+	<h1>07- Array Cardio</h1>
+	<script type="text/javascript">
+		const people= [
+			{name: 'Dung', year:1988},
+			{name:'Phuong', year:1986},
+			{name:'Ngan', year:1997},
+			{name:'Bao',year:2015}
+		];
+
+		const comments= [
+			{text: 'Like This!', id: 523423},
+			{tetx: 'Cool', id:823565},
+			{text: 'I Love Food', id:2039852 }
+			,{tetx: 'Yummy Yummy', id:123523 },
+			{text: 'I Love Dog', id:542328 }
+			];
+
+		//Array.prototype.some()- co it nhat may ng 19tuoi	
+		const adult = people.some(function(person){
+			const currentYear = (new Date()).getFullYear();
+			if(currentYear-person.year>=19){
+				return true;
+			}
+		});
+		//cach gon hon
+		// const audult = people.some(per=>{((new Date()).getFullYear-per.year >=19)});
+		// console.log({isAdult});
+		 console.log(adult);
+
+		  // Array.prototype.every()
+		  const allAdult= people.every(person=>((new Date()).getFullYear)-person.year>=19);
+		  console.log({allAdult});
+		//Arr.prototype.find()- tra ve mot tap lay gia tri dau tien no tim dc 
+		//Tim comment voi ID =823423
+		const comment = comments.find(comment=> comment.id==523423);
+		console.log(comment);
+
+		// Array.prototype.findIndex()
+   		// Tim comment voi ID =823423
+    	// xoa comment voi ID =823423
+    	const dele= comments.findIndex(comment=>comment.id==523423);
+    	console.log(dele);
+
+    	//comments.splice(index,1);
+    	const newcom=[
+    		...comments.splice(0,dele),
+    		...comments.splice(dele+1)
+    	];
+    	console.table(newcom);
+
+	</script>
+
+</body>
+</html>
