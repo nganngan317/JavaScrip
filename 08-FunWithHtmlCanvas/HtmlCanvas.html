@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Html Canvas</title>
+</head>
+<body>
+	<canvas id="draw" width="800" height="800"></canvas>
+	<script type="text/javascript">
+		const canvas= document.querySelector('#draw');
+		const ctx= canvas.getContext('2d');
+		canvas.width= window.innerWidth;
+		canvas.height= window.innerHeight;
+		ctx.strokeStyle='red';
+		ctx.lineJoin='round';//be cong duong va lien ket net ve 
+		ctx.lineCap= 'round';
+	//	ctx.globalCompositeOperation='multiply';
+		
+		let isDrawing= false;
+		let lastX=0;
+		let lastY=0;
+		let color=0; 
+		let direct=true;
+
+		function draw(e){
+			if(!isDrawing)return;
+			console.log(e);
+			ctx.strokeStyle=`hsl(${color},100%,30%)`;
+			//ctx.lineWidth= color;
+			ctx.beginPath();
+			//bat dau tu day toa do (0,0)
+			ctx.moveTo(lastX,lastY);
+			//di chuyen den noi chuot dung
+			ctx.lineTo(e.offsetX,e.offsetY);
+			ctx.stroke();
+			[lastX,lastY]=[e.offsetX,e.offsetY];
+			color++;
+			if(color>=360){
+				color=0;
+			}
+			if(ctx.lineWidth>=100 || ctx.lineWidth<=1){
+				direct=!direct;
+			}
+			if(direct)
+				{ctx.lineWidth++;}
+				else{ctx.lineWidth--;}
+
+		}
+
+		canvas.addEventListener('mousemove',draw);
+		canvas.addEventListener('mousedown',(e)=>{
+			 isDrawing= true;
+			 [lastX,lastY]=[e.offsetX,e.offsetY];
+		});
+		canvas.addEventListener('mouseup',()=> isDrawing= false);
+		canvas.addEventListener('mouseout',()=> isDrawing= false);
+
+	</script>
+</body>
+</html>
