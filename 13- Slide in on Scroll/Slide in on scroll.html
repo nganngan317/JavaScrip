@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide In on Scroll</title>
+</head>
+<body>
+	<style type="text/css">
+		html{
+			box-sizing: border-box;
+			background: #ffc600;
+		}
+		*,*:before,*:after{
+			box-sizing: inherit;
+			/*margin:50px;*/
+			
+		}
+		h1{
+			text-align: center;
+			color:#ff6600;
+
+		}
+		.container{
+			position: relative;
+			width: 600px;
+			padding:20px;
+			margin: 50px auto;
+			text-align: justify;
+			background-color: white;
+			border-radius: 10px;
+		}
+		.left{
+			width: 350px;
+			height: 250px;
+			float: left;
+			margin:10px;
+		}
+		.right{
+			width: 350px;
+			height: 250px;
+			float: right;
+			margin:20px;
+		}
+		.side-in{
+			transition: all .5s ;
+			opacity: 0;
+		}
+		.left.side-in{
+			transform: translateX(-35%) scale(0.95);
+		}
+		.right.side-in{
+			transform: translateX(35%) scale(0.95);
+		}
+		.side-in.active{
+			opacity: 1;
+			transform: translateX(0%) scale(1);
+		}
+	</style>
+	<div class="container">
+		<h1>Những Đồng Hoa Tháng 10!</h1>
+		<p>Tháng 10 Đà Lạt có hoa dã quỳ, Hà Nội gây thương nhớ với cúc họa mi... Thời điểm này, các miền đất trên khắp Việt Nam cùng rực rỡ với trăm hoa đua nở.</p>
+		<p><b>Hoa tam giác mạch (Hà Giang):</b> Là loài hoa đặc trưng của núi rừng Tây Bắc, mùa hoa tam giác mạch nở thường vào khoảng từ tháng 10-12 hàng năm. Vùng đất nổi tiếng với những cánh đồng tam giác mạch bạt ngàn phải kể đến Hà Giang. Hoa tam giác mạch khi mới nở sẽ có màu trắng hồng phớt nhạt, sau đó chuyển dần qua hồng và tím hồng trước khi tạo hạt.</p>
+		<img src="tamgiacmach.jpg" class="left side-in">
+		<p>Rất nhiều địa điểm ở Hà Giang trồng hoa tam giác mạch như Hoàng Su Phì, Xín Mần, Lũng Táo, Phố Cáo, Sủng Là, Đồng Văn, Lũng Cú... Trong đó, Sủng Là được xem là nơi có những cánh đồng tam giác mạch đẹp nhất.</p>
+		<p><b>Hoa cúc họa mi (Hà Nội):</b> Bước vào tháng 10, Hà Nội lại chìm trong sắc trắng tinh khôi của những đóa cúc họa mi. Loài hoa này sớm nở cũng sớm tàn. Một năm cúc họa mi chỉ nở một lần trong thời gian ngắn khoảng 2-3 tuần.</p>
+		<img src="cuchoami.jpg" class="right side-in">
+		<p>Người Hà Nội có lẽ rất thân thuộc với hình ảnh những chiếc xe đạp chở thúng hoa đủ màu, trong đó thấp thoáng những bó cúc họa mi nghiêng mình khoe sắc. Thời điểm cúc họa mi nở trắng đồng, giới trẻ Hà thành lại rủ nhau đến bãi đá sông Hồng, vườn hoa Nhật Tân, đồng hoa Quảng An... để chụp ảnh bên sắc hoa tinh khôi.</p>
+		<p><b>Hoa dã quỳ (Đà Lạt, Lâm Đồng):</b> Được mệnh danh là thành phố ngàn hoa, Đà Lạt vào tháng 10 hấp dẫn du khách bởi sắc vàng rực rỡ của hoa dã quỳ. Làng hoa Vạn Thành, thị trấn Tà Nung, thác Voi, núi Langbiang, thị trấn D'Ran... là những địa điểm hoa dã quỳ khoe sắc vàng tươi ở Đà Lạt.</p>
+		<img src="hoadaquy.jpg" class=" left side-in">
+		<p><b>Hoa hướng dương (Nghệ An):</b> Cánh đồng hoa hướng dương ở nông trường 19/5, xã Nghĩa Sơn, huyện Nghĩa Đàn (Nghệ An), là điểm đến quen thuộc của các tín đồ du lịch. Từ cuối tháng 10, hoa hướng dương ở đây bắt đầu nở và khoe sắc rực rỡ nhất vào khoảng cuối tháng 11, đầu tháng 12. </p>
+		<img src="huongduong.jpg" class="right side-in">
+		<p>Giữa mảnh đất miền Trung khô cằn xuất hiện cánh đồng hoa rực rỡ bên dòng sông Sào thơ mộng, tạo nên bức tranh thiên nhiên hoàn mỹ.</p>
+		<p>Ngoài đồng hoa hướng dương ở Nghệ An, Đà Lạt cũng sở hữu cánh đồng hoa mặt trời đẹp nao lòng. Đồi hoa nằm trong khuôn viên nông trường công ty sữa Đà Lạt (huyện Đơn Dương). Mỗi năm, có 2 mùa hoa hướng dương nở, vào tháng 3-4 và tháng 10-12. Địa điểm này là nơi check-in bạn không thể bỏ sót khi tới du lịch tại thành phố trên cao nguyên. Giữa mảnh đất miền Trung khô cằn xuất hiện cánh đồng hoa rực rỡ bên dòng sông Sào thơ mộng, tạo nên bức tranh thiên nhiên hoàn mỹ.</p>
+	</div>
+		<script type="text/javascript">
+			//chạy func bound khi cuộn trang và chạy func checkSlider mỗi 20milis. dễ kiểm soát
+			function bound(func,wait=20,imediate=true){
+				var timeout;
+				return function(){
+					var context= this ,args = arguments;
+					var later= function(){
+						timeout=null;
+						if(!imediate)func.apply(context,args);
+					};
+					var callNow= imediate&& !timeout;
+					clearTimeout(timeout);
+					timeout=setTimeout(later,wait);
+					if(callNow)func.apply(context,args);
+				};
+
+			};
+			  const sliderImages = document.querySelectorAll('.side-in');
+			function checkSlider(){
+				//how much i scroll down. at the top of browser.
+				// find how far the page being scrolled down
+				//console.log(window.scrollY);
+
+				 sliderImages.forEach(sliderImages =>{
+				 	//want know where i at the very bottom of my window: window.innerHeight- give the px level for where currently are at the bottom of window
+				 	// half way through the image. window.innerHeight** là lấy chiều cao của trình duyệt
+				 	const slideInAt= (window.scrollY+ window.innerHeight)-sliderImages.height/2;
+				 	 // bottom of the image.
+				 	 //offsetTop cho biet chieu cao cua img so voi cua top window la bn, và (sliderImages.height) bottom cua img
+				 	 console.log(window.innerHeight);
+				 	const imgBottom= sliderImages.offsetTop +sliderImages.height;
+				 	//console.log(imgBottom);
+				 	//console.log("offsetTop"+sliderImages.offsetTop);
+				 	//check keo qua hinh
+				 	const isHaftShown= slideInAt> sliderImages.offsetTop;
+				 	//console.log("slideInAt"+slideInAt);
+				 	//check neu k keo qua hinh
+				 	const isNotScrolledPast= window.scrollY<imgBottom;
+				 	if(isHaftShown && isNotScrolledPast){
+				 		sliderImages.classList.add('active');
+				 	}else{
+				 		sliderImages.classList.remove('active');
+				 	}
+				 });
+
+
+			}
+			window.addEventListener('scroll',bound(checkSlider));
+		</script>	
+</body>
+</html>
