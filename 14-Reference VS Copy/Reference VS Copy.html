@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reference VS Copy</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// start with strings, numbers and booleans
+		// let age=100;
+		// let age2= age;
+		// console.log(age,age2);
+		// age=200;
+		// console.log(age,age2);
+
+		// let name='ngan';
+		// let name2=name;
+		// console.log(name,name2);
+		// name='NGAN';
+		// console.log(name,name2);
+
+
+	// Let's say we have an array
+	// const player=['nws','ngan','bao','ryan'];
+	//  // and we want to make a copy of it.
+	//  const tam= player;
+	//  console.log(player,tam);
+	//  tam[3]='chopper';
+
+	//  const team2= player.slice();
+
+	//  const team3= [].concat(player);
+	//  const team4=[...player];
+	//  team4[3]= 'ha ha ha';
+	//  console.log(team4);
+
+
+	 const human={
+	 	name: 'john',
+	 	age: 20
+	 };
+	 const captain= human;
+	 captain.number=98;
+	 const cap2=Object.assign({},human,{number:99});
+	 console.log(cap2);
+	 const cap3={...human};
+	 //const team5= new Array.form(player);
+	 const wes={
+	 	name:'hey',
+	 	age:20,
+	 	social:{
+	 		twitter:'@jdfj',
+	 		gmail:'dhf@gmail.com'
+	 	}
+	 }
+	 console.clear();
+	 console.log(wes);
+
+	 const dex= Object.assign({},wes);
+	 const d2= JSON.parse(JSON.stringify(wes));
+	</script>
+	
+</body>
+</html>
