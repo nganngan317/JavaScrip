@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>16-Mouse Move Shadow</title>
+</head>
+<body>
+	<style type="text/css">
+	html{
+		/*background-image: url('vt.jpg');*/
+		background: #fc00ff;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #00dbde, #fc00ff);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #00dbde, #fc00ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+	}
+		h1{
+			align-items: center;
+			text-align: center;
+			text-shadow: 10px 10px 0 rgba(0,0,0,1);
+			font-size: 100px;
+			color: green;
+			margin-top: 150px;
+			height: 300px;
+			padding:0px;
+		}
+
+	</style>
+	<div class="hero">
+		<!-- cho phép sửa trong khung text! -->
+		<h1 contenteditable> 😻 HI Ngan?</h1>
+	</div>
+	
+	<script type="text/javascript">
+		const hero= document.querySelector('.hero');
+		const text = hero.querySelector('h1');
+		const wall= 100;//100px
+		function shadow(e){
+			// const width= hero.offsetWidth;
+			// const height= hero.offsetHeight;
+			const {offsetWidth:width , offsetHeight:height}=hero;
+			let {offsetX:x, offsetY:y}=e;
+			
+			if(this!== e.target){
+				x= x+e.target.offsetLeft;
+				y=y+ e.target.offsetTop;
+			}
+			const xWall=Math.round((x/width*wall)-(wall/2));
+			const yWall=Math.round((y/height*wall)-(wall/2));
+			text.style.textShadow = `
+			${xWall}px ${yWall}px 0 pink,
+			${xWall*-1}px ${yWall}px 0 black,
+			${yWall}px ${xWall*-1}px 0 orange,
+			${yWall*-1}px ${xWall}px 0 yellow
+			`;
+			console.log(xWall,yWall);
+
+
+		};
+
+		hero.addEventListener('mousemove', shadow);
+
+
+	</script>
+</body>
+</html>

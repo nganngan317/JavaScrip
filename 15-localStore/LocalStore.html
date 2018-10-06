@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<style type="text/css">
+		html{
+			box-sizing: border-box;
+			font-size: 20px;
+			background-image: url('http://wes.io/hx9M/oh-la-la.jpg');
+			background-size: cover;
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			font-family:Futura,"Trebuchet MS",Arial,sans-serif; 
+		}
+		*,*:before,*:after{
+			box-sizing: inherit;
+
+		}
+		.contain{
+		/*	float: center;*/
+			/*margin-left: 45% ;*/
+			width: 400px;
+			box-shadow: 0 0 0 10px rgba(0,0,0,0.1);
+			padding: 20px;
+			background: white;
+			border: 2px solid black;
+    		border-radius: 10px;
+    		/*align-items: center;*/
+		}
+		.icon{
+			box-shadow: 0 0 0 10px rgba(0,0,0,0.1);
+	      	fill:white;
+	      	background:#d9d9d9;
+	      	padding: 20px;
+	      	border-radius: 50%;
+	      	border:2px solid black;
+	      	width: 150px;
+	      	margin-bottom: 30px;
+    
+		}
+		h2{
+			text-align: center;
+			margin:0;
+			font-weight: 200;
+		}
+		.plates{
+			list-style: none;
+			margin:0;
+			padding: 0;
+
+		}
+		.plates li{
+			display: flex;
+			padding-left:40px;
+			
+		}
+		.plates input + label:before {
+		      content: '💩';
+		      margin-right: 10px;
+
+		    }
+
+	    .plates input:checked + label:before {
+		      content: '🌮';
+		    }
+
+		.add-items{
+			margin-top: 30px;
+		}
+		 .add-items input {
+	      padding: 10px;
+	      outline: 0;
+	      border: 1px solid rgba(0,0,0,0.1);
+    }
+	</style>
+
+	<img src="fish.png" class="icon">
+	<div class="contain">
+		<h2>LOCAL TAPAS</h2>
+		<p></p>
+	    <ul class="plates">
+	      <li>Loading Tapas...</li>
+	    </ul>
+	    <form class="add-items">
+	      <input type="text" name="item" class="ifood" placeholder="Item Name" required>
+	      <input type="submit" value="+ Add Item">
+	    </form>
+	</div>
+
+	<script type="text/javascript">
+		const addItems= document.querySelector('.add-items');
+		const itemList= document.querySelector('.plates');
+		//lấy item tu localStorage trc đó lưu lại
+		const items = JSON.parse(localStorage.getItem('items')) || [];
+		
+		function addItem(e){
+			//chặn cho k tải lại trang
+			e.preventDefault();
+		    const food = (this.querySelector('.ifood')).value;
+		    const item = {
+		      text: food,
+		      done: false
+		    };
+
+			 items.push(item);
+		    populateList(items, itemList);
+		  localStorage.setItem('items', JSON.stringify(items));
+		    this.reset();
+		}
+		//add vao ds menu co sd html
+		// can 2 tham so: 1.mon an de add vao ds va luu no vao trong item arr[]
+		//2. ths tao the html
+		function populateList(plates=[], plateList){
+			//map chuyen tu object sang string cho moi mon an
+			 plateList.innerHTML = plates.map((plate, i) => {
+		      return `
+		        <li>
+		          <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
+		          <label for="item${i}">${plate.text}</label>
+		        </li>
+		      `;
+		    }).join('');
+		}
+		//luu du lieu vo local. trong bowser có localStorage lưu obj vào đó sẵn
+			function toggle(e){
+				if(!e.target.matches('input'))return;
+				const el= e.target;
+				const index= el.dataset.index;
+				items[index].done= !items[index].done;
+				localStorage.setItem('items',JSON.stringify(items));
+				populateList(items,itemList);
+			}
+
+
+		addItems.addEventListener('submit', addItem);
+		 itemList.addEventListener('click', toggle);
+		  populateList(items, itemList);
+
+
+	</script>
+	
+</body>
+</html>
