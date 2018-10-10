@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<ul class="video">
+		<li data-time="5:43">video 1</li>
+		<li data-time="1:54">video 2</li>
+		<li data-time="2:87">video 3</li>
+		<li data-time="3:17">video 4</li>
+		<li data-time="4:55">video 5</li>
+		<li data-time="5:17">video 6</li>
+		<li data-time="6:12">video 7</li> 
+	</ul>
+	<script type="text/javascript">
+		const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
+  const seconds = timeNodes
+    .map(node => node.dataset.time)
+    .map(timeCode => {
+      const [mins, secs] = timeCode.split(':').map(parseFloat);
+      return (mins * 60) + secs;
+    })
+    .reduce((total, vidSeconds) => total + vidSeconds);
+    let secondsLeft = seconds;
+    const hours = Math.floor(secondsLeft / 3600);
+    secondsLeft = secondsLeft % 3600;
+    const mins = Math.floor(secondsLeft / 60);
+    secondsLeft = secondsLeft % 60;
+    console.log(hours, mins, secondsLeft);
+
+
+
+
+
+	</script>
+</body>
+</html>
