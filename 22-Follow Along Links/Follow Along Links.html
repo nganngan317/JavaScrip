@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Follow Along Links</title>
+</head>
+<body>
+    <style>
+        html{
+            box-sizing: border-box;
+        }
+        *,*::before,*::after{
+            box-sizing: inherit;
+        }
+
+        body{
+            background: #e1eec3; 
+            background: -webkit-linear-gradient(to right, #f05053, #e1eec3);  
+            background: linear-gradient(to right, #f05053, #e1eec3);
+            display: flex;
+            margin:0;
+            font-family: sans-serif;
+            min-height: 100vh;
+
+        }
+        .content{
+            margin:10% auto;
+            max-width: 600px;
+            font-size: 20px;
+            line-height: 2;
+            position: relative;
+        
+        }
+        .menu{
+            padding:0;
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            align-items: center;
+            padding-left: 100px;
+            position: fixed;
+            text-align: center;
+            flex-direction: row;
+            padding-left: 350px;
+            margin-top: 50px;
+        }
+        .menu a{
+            display: inline-block;
+            padding: 10px;
+            margin: 0 20px;
+            color: black;
+            margin-left: 50%;
+            font-size: 25px;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        .highlight{
+            transition:  all 0.2s;
+            border-bottom: 2px solid white;
+            position: absolute;
+            top:0;
+            background: white;
+            left:0;
+            z-index: -1;
+            border-radius: 10px;
+            display: block;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+    <nav>
+        <ul class="menu">
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Mood</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">Store</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <h1>Kem Tràng Tiền</h1>
+        <p>Đã từ rất lâu rồi, địa chỉ 35 <a href="">Tràng Tiền</a> đã trở nên vô cùng quen thuộc với những người sống ở Hà Nội.  </p>
+        <p>Đó không đơn thuần là một địa chỉ  <a href="">bán kem</a>, đó còn là nơi có cái thú ăn kem rất <a href="">khác</a> biệt mà gần như <a href="">chang nơi nào</a>  ở mảnh đất thủ đô này có được.</p>   
+        <p>Kem Tràng Tiền cũng khác biệt lắm so với các loại <a href="">kem khác</a>. Thật lòng mà nói thì giữa vô vàn kiểu kem <a href="">du nhập</a> từ nhiều nơi, 
+            rồi nhiều sáng tạo cho ra đời các kiểu kem mới thì kem Tràng Tiền cũng chỉ ở <a href="">tầm trung</a> chứ không được liệt vào dạng quá xuất sắc.
+            <a href="">Thế nhưng</a>, kem Tràng Tiền lại "ăn điểm" bởi độ <a href="">ngon</a>-<a href=""> bổ</a> -<a href=""> rẻ</a>, hợp túi tiền của nhiều người.
+            Mà có lẽ cũng còn do <a href="">thói quen</a>  thưởng thức kem Tràng Tiền đã  <a href="">ăn sâu</a> vào nhiều người Hà Nội.
+            Chiều chiều rảnh rang hay tối tối đi chơi với <a href="">gia đình</a>, bạn bè là cũng phải <a href="">qua đây</a> làm một chiếc kem mới được.</p>
+    </div>
+    <script>
+        
+        const triggers = document.querySelectorAll('a');
+        const highlight = document.createElement('span');
+        highlight.classList.add('highlight');
+        document.body.appendChild(highlight);
+        function highlightLink() {
+            const linkCoords = this.getBoundingClientRect();
+            console.log(linkCoords);
+            const coords = {
+            width: linkCoords.width,
+            height: linkCoords.height,
+            top: linkCoords.top + window.scrollY,
+            left: linkCoords.left + window.scrollX
+            };
+            highlight.style.width = `${coords.width}px`;
+            highlight.style.height = `${coords.height}px`;
+            highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+        }
+        triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));
+
+    </script>
+</body>
+</html>
