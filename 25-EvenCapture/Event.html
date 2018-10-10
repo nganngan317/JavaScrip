@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+  <style type="text/css">
+  	 html {
+	    box-sizing: border-box;
+	  }
+	  
+	  *, *:before, *:after { 
+	    box-sizing: inherit; 
+	  }
+	  div {
+	    width: 100%;
+	    padding: 100px;
+	  }
+	  .one {
+	    background: thistle;
+	  }
+	  .two {
+	    background: mistyrose;
+	  }
+	  .three {
+	    background: yellow;
+	  }
+  </style>
+  <script type="text/javascript">
+  	 const divs= document.querySelector('.div');
+  	 const button= document.querySelector('button');
+  	 function logText(e){
+  	 	console.log(this.classList.value);
+  	 	e.stopPropagation();
+  	 	//console.log(this);
+  	 }
+  	 document.body.addEventListener('click',logText);
+  	 divs.forEach(div=> div.addEventListener('click',logText,{
+  	 		capture: false,
+  	 		once: true;
+  	 }) );
+  	 button.addEventListener('click',()={
+  	 	console.log('Click!!');
+  	 },{
+  	 	once: true;
+  	 });
+  </script>
+</body>
+</html>
