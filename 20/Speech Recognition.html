@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Speech Recognition</title>
+</head>
+<body>
+    <style>
+        body{
+            background: #c31432; 
+            background: -webkit-linear-gradient(to right, #240b36, #c31432);  
+            background: linear-gradient(to right, #240b36, #c31432); 
+            font-family: 'helvetica neue';
+            font-weight: 200;
+            font-size: 20px;
+        }
+        .word{
+            max-width: 500px;
+            margin: 30% auto;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+            padding: 10px;
+            position: relative;
+            line-height: 3rem;
+        }
+        p{
+            margin: 0 0 3rem;
+
+        }
+        .word:before{
+            content:'';
+            position: absolute;
+            width: 4px;
+            top:0;
+            left: 30px;
+            bottom:0;
+            border:1px solid;
+            border-color: transparent #efe4e4;
+        }
+    </style>
+    <div class="word" contenteditable></div>
+    <script>
+        window.SpeechRecognition= window.SpeechRecognition || window.webkitSpeechRecognition;
+        const reg= new SpeechRecognition();
+        reg.interimResults= true;
+        reg.lang='en-US';
+
+        let p= document.createElement('p');
+        const word= document.querySelector('.word');
+        word.appendChild(p);
+        reg.addEventListener('results', e=>{
+            const transcript = Array.form(e.results)
+                .map(result => result[0])
+                .map(result => result.transcript)
+                .join('');
+            
+            const pop= transcript.replace(/like|love|smile/gi, ' <3 ')
+            p.textContent = pop;
+
+            if(e.results[0].isFinal){
+                p= document.createElement('p');
+                word.appendChild(p);
+            }
+        });
+        reg.addEventListener('end', reg.start);
+        reg.start();
+    </script>
+</body>
+</html>
